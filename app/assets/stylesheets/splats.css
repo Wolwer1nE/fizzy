@@ -3,9 +3,13 @@
 }
 
 .windshield {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15vw, 1fr));
-  justify-items: center;
+  background-color: var(--color-subtle);
+  border-radius: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-block: clamp(var(--block-space), 3%, calc(var(--block-space) * 2));
+  padding-inline: clamp(var(--inline-space), 5%, calc(var(--inline-space) * 3));
 
   > * {
     flex-shrink: 1;
