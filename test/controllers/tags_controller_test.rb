@@ -22,4 +22,3 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     assert bubbles(:logo).tags.pluck(:title).include?("Horizons")
   end
 end
-
