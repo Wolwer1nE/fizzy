@@ -16,7 +16,7 @@ class Bubble < ApplicationRecord
   end
 
   scope :ordered_by_activity, -> do
-    left_joins_comments.select("bubbles.*, COUNT(comments.id) + boost_count AS activity").group(:id).order("activity DESC")
+    left_joins_comments.select("bubbles.*, COUNT(comments.id) + bubbles.boost_count AS activity").group(:id).order("activity DESC")
   end
 
   scope :ordered_by_comments, -> do
