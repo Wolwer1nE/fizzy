@@ -18,6 +18,10 @@
   position: relative;
 }
 
+.comment--new {
+  background-color: var(--color-subtle-light);
+}
+
 .comment__avatar {
   margin-block-start: calc(var(--comment-padding-block) * 0.5);
   margin-inline: auto calc(var(--comment-padding-inline) * -0.75);
@@ -41,6 +45,7 @@
 }
 
 .comment__content {
+  background-color: var(--color-subtle-light);
   margin-inline: auto var(--avatar-size);
   padding: var(--comment-padding-block) var(--comment-padding-inline);
 
@@ -54,7 +59,7 @@
 }
 
 .comment__input {
-  --input-border-color: var(--color-subtle);
+  --input-border-size: 0;
 
   line-height: inherit;
   min-block-size: calc(9lh + (2 * var(--comment-padding-block)));
@@ -78,8 +83,9 @@
 }
 
 .comment__submit {
-  position: absolute;
   inset: auto 0.5em 0.5em auto;
+  position: absolute;
+  z-index: 0;
 }
 
 .comment__timestamp {
