@@ -11,7 +11,7 @@
 
       <% events.each do | hour_column, cluster| %>
         <%= event_cluster_tag(*hour_column) do %>
-          <%= render cluster.sort_by(&:created_at).reverse %>
+          <%= render partial: "events/event", collection: cluster.sort_by(&:created_at).reverse %>
 
           <%= local_datetime_tag cluster.first.created_at, class: "event__timestamp txt-small translucent" %>
         <% end %>

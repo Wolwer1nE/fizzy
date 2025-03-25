@@ -65,7 +65,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events, only: :index
+  namespace :events do
+    resources :days
+  end
+
   resources :filters
   resource :first_run
   resources :qr_codes

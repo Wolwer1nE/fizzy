@@ -29,7 +29,7 @@ module EventsHelper
   def event_next_page_link(next_day)
     if next_day
       tag.div id: "next_page",
-        data: { controller: "fetch-on-visible", fetch_on_visible_url_value: events_path(day: next_day.strftime("%Y-%m-%d")) }
+        data: { controller: "fetch-on-visible", fetch_on_visible_url_value: events_days_path(day: next_day.strftime("%Y-%m-%d")) }
     end
   end
 
