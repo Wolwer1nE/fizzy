@@ -15,7 +15,7 @@ module Bubble::Poppable
   class_methods do
     def auto_pop_all_due
       due_to_be_popped.find_each do |bubble|
-        bubble.pop!(user: bubble.bucket.account.users.system)
+        bubble.pop!(user: bubble.bucket.account.users.system, reason: "Closed")
       end
     end
   end
@@ -40,7 +40,7 @@ module Bubble::Poppable
     pop&.created_at
   end
 
-  def pop!(user: Current.user, reason: nil)
+  def pop!(user: Current.user, reason: Account::PopReasons::FALLBACK_LABEL)
     unless popped?
       transaction do
         create_pop! user: user, reason: reason

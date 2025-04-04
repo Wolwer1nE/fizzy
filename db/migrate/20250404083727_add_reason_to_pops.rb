@@ -8,5 +8,11 @@ class AddReasonToPops < ActiveRecord::Migration[8.1]
 
       t.timestamps
     end
+
+    execute <<~SQL
+      update pops set reason = 'Closed'
+    SQL
+
+    change_column_null :pops, :reason, false
   end
 end

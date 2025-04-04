@@ -246,7 +246,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_04_04_083727) do
   create_table "pops", force: :cascade do |t|
     t.integer "bubble_id", null: false
     t.datetime "created_at", null: false
-    t.string "reason"
+    t.string "reason", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["bubble_id"], name: "index_pops_on_bubble_id", unique: true

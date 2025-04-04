@@ -470,16 +470,6 @@ columns:
     comment:
   - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
     auto_increment:
-    name: last_active_at
-    cast_type: *3
-    sql_type_metadata: *4
-    'null': true
-    default:
-    default_function:
-    collation:
-    comment:
-  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
-    auto_increment:
     name: stage_id
     cast_type: *1
     sql_type_metadata: *2
@@ -509,6 +499,16 @@ columns:
     collation:
     comment:
   - *9
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: last_active_at
+    cast_type: *3
+    sql_type_metadata: *4
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
   buckets:
   - *5
   - &32 !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
@@ -792,7 +792,7 @@ columns:
     name: reason
     cast_type: *7
     sql_type_metadata: *8
-    'null': true
+    'null': false
     default:
     default_function:
     collation:
@@ -1354,10 +1354,11 @@ indexes:
   bubbles:
   - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
     table: bubbles
-    name: index_bubbles_on_stage_id
+    name: index_bubbles_on_last_active_at_and_status
     unique: false
     columns:
-    - stage_id
+    - last_active_at
+    - status
     lengths: {}
     orders: {}
     opclasses: {}
@@ -1370,11 +1371,10 @@ indexes:
     valid: true
   - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
     table: bubbles
-    name: index_bubbles_on_last_active_at_and_status
+    name: index_bubbles_on_stage_id
     unique: false
     columns:
-    - last_active_at
-    - status
+    - stage_id
     lengths: {}
     orders: {}
     opclasses: {}
