@@ -27,8 +27,10 @@
         </h1>
       </div>
 
-      <%= turbo_frame_tag dom_id(@bubble, :stages) do %>
-        <%= render "bubbles/stagings/stages", bubble: bubble %>
+      <% if bubble.doing? %>
+        <%= turbo_frame_tag dom_id(@bubble, :stages) do %>
+          <%= render "bubbles/stagings/stages", bubble: bubble %>
+        <% end %>
       <% end %>
 
       <% if bubble.considering? %>

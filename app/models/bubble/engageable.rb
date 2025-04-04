@@ -6,8 +6,8 @@ module Bubble::Engageable
   included do
     has_one :engagement, dependent: :destroy, class_name: "Bubble::Engagement"
 
-    scope :doing, -> { active.joins(:engagement) }
-    scope :considering, -> { active.where.missing(:engagement) }
+    scope :doing, -> { published.active.joins(:engagement) }
+    scope :considering, -> { published.active.where.missing(:engagement) }
 
     scope :stagnated, -> { doing.where(last_active_at: ..STAGNATED_AFTER.ago) }
   end
@@ -25,11 +25,11 @@ module Bubble::Engageable
   end
 
   def doing?
-    active? && engagement.present?
+    active? && published? && engagement.present?
   end
 
   def considering?
-    active? && !doing?
+    active? && published? && !doing?
   end
 
   def engage
