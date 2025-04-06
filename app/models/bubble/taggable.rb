@@ -8,7 +8,7 @@ module Bubble::Taggable
     scope :tagged_with, ->(tags) { joins(:taggings).where(taggings: { tag: tags }) }
   end
 
-  def toggle_tag(title)
+  def toggle_tag_with(title)
     transaction do
       tag = find_or_create_tag_by_title(title)
       tagged_with?(tag) ? untagging(tag) : tagging(tag)
