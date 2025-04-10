@@ -1,4 +1,8 @@
 @layer components {
+  .notification {
+    position: relative;
+  }
+
   .notification-tray {
     inset: auto var(--inline-space) var(--block-space-half) auto;
 
