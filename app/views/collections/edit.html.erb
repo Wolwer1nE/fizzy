@@ -49,7 +49,9 @@
           <hr class="separator--horizontal margin-inline" style="--border-color: var(--color-subtle-dark);" aria-hidden="true" />
 
           <% if User.active.count > 20 %>
-            <input placeholder="Filter…" class="input input--transparent full-width" type="search" autocorrect="off" autocomplete="off" data-1p-ignore="true" data-action="input->filter#filter">
+            <div class="pad-inline">
+              <input placeholder="Filter…" class="input input--transparent full-width" type="search" autocorrect="off" autocomplete="off" data-1p-ignore="true" data-action="input->filter#filter">
+            </div>
           <% end %>
 
           <div data-filter-target="list" class="users-list pad-inline">
