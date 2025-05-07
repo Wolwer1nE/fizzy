@@ -35,9 +35,9 @@ class CommandsController < ApplicationController
 
     def respond_with_execution_result(result)
       case result
-        when Command::Result::Redirection
+      when Command::Result::Redirection
           redirect_to result.url
-        else
+      else
           redirect_back_or_to root_path
       end
     end

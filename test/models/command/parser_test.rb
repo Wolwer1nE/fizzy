@@ -9,4 +9,3 @@ class Command::ParserTest < ActionDispatch::IntegrationTest
     assert_equal "assign @kevin", result.line
   end
 end
-
