@@ -5,9 +5,19 @@ module Card::Entropy
   ENTROPY_REMINDER_BEFORE = 7.days
 
   included do
-    scope :with_entropy_configuration, -> { joins(collection: :entropy_configuration) }
-    scope :stagnated,        -> { doing.with_entropy_configuration.where(last_active_at: ..AUTO_RECONSIDER_PERIOD.ago) }
-    scope :due_to_be_closed, -> { considering.with_entropy_configuration.where("last_active_at <= DATETIME('now', '-' || entropy_configurations.auto_close_period || ' seconds')") }
+    scope :entropic_by, ->(period_name) do
+      left_outer_joins(collection: :entropy_configuration)
+        .where("last_active_at <= DATETIME('now', '-' || COALESCE(entropy_configurations.#{period_name}, (?)) || ' seconds')",
+        Entropy::Configuration.select(period_name).where(container_type: "Account").limit(1).to_sql)
+    end
+
+    scope :stagnated, -> do
+      doing.entropic_by(:auto_reconsider_period)
+    end
+
+    scope :due_to_be_closed, -> do
+      considering.entropic_by(:auto_close_period)
+    end
 
     delegate :auto_close_period, :auto_reconsider_period, to: :collection
   end
