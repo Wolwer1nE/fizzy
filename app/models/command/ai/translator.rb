@@ -129,9 +129,9 @@ class Command::Ai::Translator
         * **Imperative** “tag …”, “tag with #X”, “add the #X tag”, “apply #X” → command /tag #X   (never a filter)
         * "Unassigned cards" (or “not assigned”, “with no assignee”) → assignment_status: "unassigned".
           – IMPORTANT: Only set assignment_status when the user **explicitly** asks for an unassigned state
-          – Do NOT infer unassigned just because an assignment follows
+          – Do NOT infer unassigned just because an assignment follows.
         * **Possessive “my” in front of “card” or “cards”***
-          → assignee_ids: [ #{user.name} ] — applies **even when other filters are present***
+          → assignee_ids: [ #{user.to_gid} ] — applies **even when other filters are present***
           (e.g., “my cards closing soon”, “my stalled cards”, “my cards created yesterday”).
         * “Recent cards” (i.e., newly created) → indexed_by: "newest"
         * “Cards with recent activity”, “recently updated cards” → indexed_by: "latest"
@@ -302,7 +302,7 @@ class Command::Ai::Translator
 
     def custom_context
       <<~PROMPT
-        The name of the user making requests is #{user.first_name.downcase}.
+        The user making requests is "#{user.to_gid}".
 
         ## Current view:
 
