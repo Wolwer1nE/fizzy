@@ -289,10 +289,13 @@
   }
 
   .card__closed {
+    --stamp-color: oklch(var(--lch-green-medium) / 0.65);
+
     align-items: center;
+    background-color: color-mix(in srgb, var(--card-bg-color), transparent 10%);
     border-radius: 0.2em;
-    border: 0.75ch solid var(--card-color);
-    color: var(--card-color);
+    border: 0.5ch solid var(--stamp-color);
+    color: var(--color-ink-medium);
     display: flex;
     flex-direction: column;
     font-weight: bold;
@@ -300,11 +303,10 @@
     justify-content: center;
     max-inline-size: 25ch;
     min-inline-size: 16ch;
-    mix-blend-mode: multiply;
     padding: 1ch;
     position: absolute;
-    transform-origin: bottom left;
-    transform: rotate(-10deg);
+    rotate: 5deg;
+    transform-origin: top right;
 
     @media (prefers-color-scheme: dark) {
       mix-blend-mode: screen;
@@ -317,6 +319,7 @@
   }
 
   .card__closed-title {
+    color: var(--stamp-color);
     font-size: 1.3em;
     font-weight: 900;
     line-height: 1.2;

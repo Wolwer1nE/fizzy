@@ -311,7 +311,7 @@
           border-width: 0.5ch;
           font-size: 0.75em;
           inset: auto 0 var(--cards-gap) auto;
-          transform: none;
+          rotate: 0deg;
         }
 
         .card__header {
