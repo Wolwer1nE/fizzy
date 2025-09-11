@@ -89,7 +89,7 @@ export default class extends Controller {
   }
 
   #formatTime(formatter, target) {
-    const dt = new Date(target.getAttribute("datetime"))
+    const dt = new Date(parseInt(target.getAttribute("datetime"))*1000)
     target.innerHTML = formatter.format(dt)
     target.title = this.datetimeFormatter.format(dt)
   }
