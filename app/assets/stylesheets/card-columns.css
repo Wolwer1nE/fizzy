@@ -273,12 +273,22 @@
         &:not(.btn--link) {
           border: 0;
           color: var(--color-link);
+          margin-block: calc(var(--block-space) * -0.5) calc(var(--block-space) * 0.25);
         }
       }
 
       footer {
         font-size: var(--text-x-small);
-        margin-block-end: calc(var(--block-space) / -2);
+        margin-block-end: calc(var(--block-space) * -1);
+      }
+
+      .separator--horizontal {
+        margin-block: 0.7em 0.7em;
+      }
+
+      .overflow-count {
+        font-size: 1.2em;
+        padding: 0.2em;
       }
     }
 

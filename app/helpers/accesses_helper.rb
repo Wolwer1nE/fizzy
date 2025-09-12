@@ -25,14 +25,19 @@ module AccessesHelper
   end
 
   def collection_watchers_list(collection)
-    tag.div(class: "flex flex-wrap gap-half justify-center") do
-      safe_join(
-        collection.users
-                  .without(User.system)
-                  .where(accesses: { involvement: :watching })
-                  .distinct
-                  .map { |watcher| avatar_tag(watcher) }
-      )
+    watchers = collection.users
+                        .without(User.system)
+                        .where(accesses: { involvement: :watching })
+                        .distinct
+
+    displayed_watchers = watchers.limit(8)
+    overflow_count = watchers.count - 8
+
+    tag.div(class: "flex gap-half justify-center") do
+      safe_join([
+        safe_join(displayed_watchers.map { |watcher| avatar_tag(watcher) }),
+        (tag.span("+#{overflow_count}", class: "overflow-count") if overflow_count > 0)
+      ].compact)
     end
   end
 
