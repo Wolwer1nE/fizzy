@@ -1,5 +1,3 @@
-<ul class="popup__list">
-  <li class="popup__group-title">Tags</li>
+<%= filter_collapsible_section "Tags" do %>
   <%= render partial: "filters/menu/tags/tag", collection: user_filtering.tags, as: :tag %>
-</ul>
-
+<% end %>

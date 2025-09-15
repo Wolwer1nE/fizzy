@@ -221,7 +221,7 @@
       z-index: 1;
     }
 
-    .btn:not(.popup__item, .btn--plain, .btn--reversed) {
+    .btn:not(.popup__btn, .btn--plain, .btn--reversed) {
       --btn-background: var(--card-color);
       --btn-color: var(--color-ink-inverted);
     }

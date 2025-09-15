@@ -9,11 +9,11 @@
     </button>
 
     <%= filter_dialog "Filter by…" do %>
-      <strong class="popup__title txt-nowrap">Filter by…</strong>
+      <strong class="popup__title">Filter by…</strong>
 
       <ul class="popup__list" data-filter-target="list">
         <% Filter::INDEXES.each do |index| %>
-          <li class="popup__group" data-navigable-list-target="item">
+          <li class="popup__item" data-navigable-list-target="item">
             <%= form_with url: cards_path, method: :get, class: "full-width", data: { controller: "form" } do |form| %>
               <% filter.as_params.except(:indexed_by).each do |key, value| %>
                 <%= filter_hidden_field_tag key, value %>
@@ -23,7 +23,7 @@
 
               <%= hidden_field_tag :expand_all, true, disabled: !user_filtering.expanded?, data: { toggle_enable_target: "element" } %>
 
-              <%= form.button type: "submit", class: "popup__item btn" do %>
+              <%= form.button type: "submit", class: "popup__btn btn" do %>
                 <span class="overflow-ellipsis flex-item-grow"><%= index.humanize %></span>
                 <% if filter.indexed_by == index %>
                   <%= icon_tag "check", class: "checked flex-item-justify-end" %>

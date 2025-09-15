@@ -1,10 +1,9 @@
-<li class="popup__group gap-half overflow-ellipsis" data-filter-target="item" data-navigable-list-target="item" id="filter-custom-<%= filter.id %>">
-  <%= link_to cards_path(filter_id: filter.id), class: "btn popup__new popup__item" do %>
-    <%= icon_tag "bookmark" %>
-    <div class="flex flex-column txt-tight-lines min-width txt-small">
-      <span class="overflow-ellipsis"><%= filter_selected_collections_title(user_filtering) %></span>
-      <span class="overflow-ellipsis"><%= filter.summary %></span>
+<li class="popup__item" data-filter-target="item" data-navigable-list-target="item" id="filter-custom-<%= filter.id %>">
+  <%= icon_tag "bookmark", class: "popup__icon" %>
+  <%= link_to cards_path(filter_id: filter.id), class: "popup__btn btn" do %>
+    <div class="txt-tight-lines min-width txt-small overflow-ellipsis">
+      <div><%= filter_selected_collections_title(user_filtering) %></div>
+      <div><%= filter.summary %></div>
     </div>
-    <span class="translucent flex-item-no-shrink flex-item-justify-end"> ›</span>
   <% end %>
 </li>

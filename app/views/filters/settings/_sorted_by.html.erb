@@ -9,11 +9,11 @@
     </button>
 
     <%= filter_dialog "Sort by…" do %>
-      <strong class="popup__title txt-nowrap">Sort by…</strong>
+      <strong class="popup__title">Sort by…</strong>
 
       <ul class="popup__list" data-filter-target="list">
         <% Filter::SORTED_BY.each do |sort| %>
-          <li class="popup__group" data-navigable-list-target="item">
+          <li class="popup__item" data-navigable-list-target="item">
             <%= form_with url: cards_path, method: :get, class: "full-width", data: { controller: "form" } do |form| %>
               <% filter.as_params.except(:sorted_by).each do |key, value| %>
                 <%= filter_hidden_field_tag key, value %>
@@ -23,7 +23,7 @@
 
               <%= hidden_field_tag :expand_all, true, disabled: !user_filtering.expanded?, data: { toggle_enable_target: "element" } %>
 
-              <%= form.button type: "submit", class: "popup__item btn" do %>
+              <%= form.button type: "submit", class: "popup__btn btn" do %>
                 <span class="overflow-ellipsis flex-item-grow"><%= sorted_by_label(sort) %></span>
                 <% if filter.sorted_by == sort %>
                   <%= icon_tag "check", class: "checked flex-item-justify-end" %>

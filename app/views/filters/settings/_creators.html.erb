@@ -13,7 +13,7 @@
     </button>
 
     <%= filter_dialog "Added by…" do %>
-      <strong class="popup__title txt-nowrap">Added by…</strong>
+      <strong class="popup__title">Added by…</strong>
 
       <% if user_filtering.users.many? %>
         <%= text_field_tag :search, nil, placeholder: "Filter…", class: "input input--transparent txt-small", autofocus: true,
@@ -22,7 +22,7 @@
 
       <ul class="popup__list" data-filter-target="list">
         <% user_filtering.users.each do |user| %>
-          <li class="popup__group" data-filter-target="item" data-navigable-list-target="item">
+          <li class="popup__item" data-filter-target="item" data-navigable-list-target="item">
             <%= form_with url: cards_path, method: :get, class: "full-width", data: { controller: "form" } do |form| %>
               <% filter.as_params.except(:creator_ids).each do |key, value| %>
                 <%= filter_hidden_field_tag key, value %>
@@ -40,7 +40,7 @@
 
               <%= hidden_field_tag :expand_all, true, disabled: !user_filtering.expanded?, data: { toggle_enable_target: "element" } %>
 
-              <%= form.button type: "submit", class: "popup__item btn" do %>
+              <%= form.button type: "submit", class: "popup__btn btn" do %>
                 <span class="overflow-ellipsis flex-item-grow"><%= user.name %></span>
                 <% if filter.creators.include?(user) %>
                   <%= icon_tag "check", class: "checked flex-item-justify-end" %>

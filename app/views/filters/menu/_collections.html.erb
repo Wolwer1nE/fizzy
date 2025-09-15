@@ -2,10 +2,9 @@
 <%= form_with url: user_filtering.self_filter_path(script_name: Account.sole.slug), method: :get, class: "display-contents",
       data: { controller: "form" } do |form| %>
   <% if user_filtering.collections.any? %>
-    <ul class="popup__list">
-      <li class="popup__group-title">Collections</li>
+    <%= filter_collapsible_section "Collections" do %>
       <%= render "filters/menu/collections/all_option", form: form, user_filtering: user_filtering %>
       <%= render partial: "filters/menu/collections/collection", collection: user_filtering.collections, as: :collection, locals: { form: form, user_filtering: user_filtering } %>
-    </ul>
+    <% end %>
   <% end %>
 <% end %>

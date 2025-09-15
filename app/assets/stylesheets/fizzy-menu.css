@@ -63,7 +63,7 @@
     max-inline-size: 100%;
 
     /* When all its children are hidden, hide this as well so it doesn't take up space */
-    &:has(.popup__group[hidden]):not(:has(.popup__group:not([hidden]))) {
+    &:has(.popup__item[hidden]):not(:has(.popup__item:not([hidden]))) {
       display: none;
     }
 

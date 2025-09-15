@@ -1,11 +1,6 @@
-<%= form_with url: cards_path, method: :get, class: "display-contents",
-      data: { controller: "form" } do |form| %>
-
-  <ul class="popup__list">
-    <li class="popup__group-title">Saved filters</li>
-
+<%= filter_collapsible_section "Saved filters" do %>
+  <%= form_with url: cards_path, method: :get, data: { controller: "form" } do |form| %>
     <%= render "filters/menu/custom/create" %>
     <%= render partial: "filters/menu/custom/filter", collection: user_filtering.filters, as: :filter, locals: { user_filtering: user_filtering } %>
-  </ul>
-
+  <% end %>
 <% end %>

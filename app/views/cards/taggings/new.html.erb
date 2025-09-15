@@ -5,7 +5,7 @@
     data-navigable-list-actionable-items-value="true"
     data-action="keydown->navigable-list#navigate filter:changed->navigable-list#reset dialog:show@document->navigable-list#reset"
   >
-    <strong class="popup__title txt-nowrap">Tag this…</strong>
+    <strong class="popup__title">Tag this…</strong>
 
     <%= form_with url: card_taggings_path(@card), class: "flex flex-column gap-half full-width margin-block-half" do |form| %>
       <%= form.text_field :tag_title, placeholder: @tags.any? ? "Add a new tag or filter…" : "Name this tag…", class: "input txt-small full-width",
@@ -14,9 +14,9 @@
 
     <ul class="popup__list" data-filter-target="list">
       <% @tags.each do |tag| %>
-        <li class="popup__group" data-filter-target="item" data-navigable-list-target="item">
+        <li class="popup__item" data-filter-target="item" data-navigable-list-target="item">
           <%= button_to card_taggings_path(@card, params: { tag_title: tag.title }), method: :post,
-              class: "popup__item btn",
+              class: "popup__btn btn",
               form_class: "max-width flex-item-grow" do %>
             <span class="overflow-ellipsis flex-item-grow"><%= tag.hashtag %></span>
             <%= icon_tag "check", size: 18, class: "checked flex-item-no-shrink flex-item-justify-end", style: "--icon-size: 1em" if @card.tagged_with?(tag) %>
