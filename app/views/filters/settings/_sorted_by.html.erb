@@ -12,7 +12,9 @@
       </span>
     </button>
 
-    <%= hidden_field_tag :sorted_by, nil, data: { combobox_target: "hiddenField", filter_settings_target: "field" } %>
+    <template data-combobox-target="hiddenFieldTemplate">
+      <%= hidden_field_tag :sorted_by, nil, data: { filter_settings_target: "field" } %>
+    </template>
 
     <%= filter_dialog "Sort by…" do %>
       <strong class="popup__title">Sort by…</strong>

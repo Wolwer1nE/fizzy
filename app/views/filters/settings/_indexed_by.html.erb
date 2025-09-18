@@ -7,7 +7,9 @@
       </span>
     </button>
 
-    <%= hidden_field_tag :indexed_by, nil, data: { combobox_target: "hiddenField", filter_settings_target: "field" } %>
+    <template data-combobox-target="hiddenFieldTemplate">
+      <%= hidden_field_tag :indexed_by, nil, data: { filter_settings_target: "field" } %>
+    </template>
 
     <%= filter_dialog "Filter by…" do %>
       <strong class="popup__title">Filter by…</strong>
