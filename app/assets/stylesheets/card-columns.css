@@ -281,10 +281,6 @@
       inline-size: var(--column-width-collapsed);
     }
 
-    .panel {
-      --panel-padding: 1ch;
-    }
-
     .cards.is-collapsed & {
       display: none;
     }
