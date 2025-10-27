@@ -26,6 +26,15 @@ GIT
       rails (>= 6.0.0)
 
 GIT
+  remote: https://github.com/basecamp/yabeda-activejob.git
+  revision: 684973f77ff01d8b3dd75874538fae55961e15e6
+  branch: bulk-and-scheduled-jobs
+  specs:
+    yabeda-activejob (0.6.0)
+      rails (>= 6.1)
+      yabeda (~> 0.6)
+
+GIT
   remote: https://github.com/crmne/ruby_llm.git
   revision: 32611afc114c5f40696dd42f8a1eaee6b6b81330
   specs:
@@ -139,15 +148,6 @@ GIT
       thor (~> 1.0, >= 1.2.2)
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
-
-GIT
-  remote: https://github.com/rosa/yabeda-activejob.git
-  revision: 08207e7dddf6f4dd1d039c1ddf792b35655a3feb
-  branch: support-end-time-in-seconds
-  specs:
-    yabeda-activejob (0.5.0)
-      rails (>= 5.2)
-      yabeda (~> 0.6)
 
 PATH
   remote: gems/fizzy-saas
