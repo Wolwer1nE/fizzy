@@ -408,21 +408,6 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.index ["user_id"], name: "index_search_queries_on_user_id"
   end
 
-  create_table "search_records", id: :uuid, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.uuid "account_id", null: false
-    t.string "account_key", null: false
-    t.uuid "board_id", null: false
-    t.uuid "card_id", null: false
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.uuid "searchable_id", null: false
-    t.string "searchable_type", null: false
-    t.string "title"
-    t.index ["account_id"], name: "index_search_records_on_account_id"
-    t.index ["account_key", "content", "title"], name: "index_search_records_on_account_key_and_content_and_title", type: :fulltext
-    t.index ["searchable_type", "searchable_id"], name: "index_search_records_on_searchable_type_and_searchable_id", unique: true
-  end
-
   create_table "search_records_0", id: :uuid, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.uuid "account_id", null: false
     t.string "account_key", default: "", null: false
@@ -435,6 +420,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_0_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_0_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_0_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_0_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -450,6 +436,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_1_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_1_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_1_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_1_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -465,6 +452,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_10_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_10_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_10_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_10_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -480,6 +468,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_11_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_11_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_11_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_11_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -495,6 +484,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_12_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_12_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_12_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_12_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -510,6 +500,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_13_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_13_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_13_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_13_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -525,6 +516,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_14_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_14_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_14_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_14_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -540,6 +532,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_15_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_15_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_15_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_15_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -555,6 +548,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_2_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_2_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_2_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_2_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -570,6 +564,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_3_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_3_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_3_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_3_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -585,6 +580,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_4_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_4_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_4_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_4_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -600,6 +596,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_5_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_5_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_5_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_5_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -615,6 +612,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_6_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_6_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_6_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_6_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -630,6 +628,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_7_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_7_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_7_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_7_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -645,6 +644,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_8_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_8_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_8_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_8_on_searchable_type_and_searchable_id", unique: true
   end
 
@@ -660,6 +660,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_11_21_092508) do
     t.string "title"
     t.index ["account_id"], name: "index_search_records_9_on_account_id"
     t.index ["account_key", "content", "title"], name: "index_search_records_9_on_account_key_and_content_and_title", type: :fulltext
+    t.index ["content", "title"], name: "index_search_records_9_on_content_and_title", type: :fulltext
     t.index ["searchable_type", "searchable_id"], name: "index_search_records_9_on_searchable_type_and_searchable_id", unique: true
   end
 
