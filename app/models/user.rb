@@ -24,10 +24,16 @@ class User < ApplicationRecord
     transaction do
       accesses.destroy_all
       update! active: false, identity: nil
+      close_remote_connections
     end
   end
 
   def setup?
     name != identity.email_address
   end
+
+  private
+    def close_remote_connections
+      ActionCable.server.remote_connections.where(current_user: self).disconnect(reconnect: false)
+    end
 end
