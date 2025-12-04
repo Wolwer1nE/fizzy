@@ -1,16 +1,16 @@
 # Name of your application. Used to uniquely configure containers.
-service: fizzy
+service: mfa-fizzy
 
 # Name of the container image (use your-user/app-name on external registries).
-image: fizzy
+image: mfa-fizzy
 
 # Deploy to these servers.
 servers:
-  web:
-    - 192.168.0.1
+  web: 
+    - 94.131.113.5
   # job:
   #   hosts:
-  #     - 192.168.0.1
+  #     - 94.131.113.5
   #   cmd: bin/jobs
 
 # Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.
