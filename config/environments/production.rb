@@ -63,6 +63,8 @@ Rails.application.configure do
   config.solid_queue.connects_to = { database: { writing: :queue, reading: :queue } }
   # config.active_job.queue_name_prefix = "fizzy_production"
 
+  config.active_storage.service = ENV.fetch("ACTIVE_STORAGE_SERVICE", "local").to_sym
+
   config.action_mailer.perform_caching = false
 
   build_placeholder_email = "build@localhost"
