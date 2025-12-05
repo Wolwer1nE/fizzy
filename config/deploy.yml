@@ -22,7 +22,7 @@ servers:
 #
 proxy:
   ssl: true
-  host: gametools.space/
+  host: gametools.space
 
 # Where you keep your container images.
 registry:
@@ -40,6 +40,10 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - FIZZY_EMAIL_ADDRESS
+    - FIZZY_EMAIL_DOMAIN
+    - FIZZY_EMAIL_PASSWORD
+    - FIZZY_SMTP_ADDRESS
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.

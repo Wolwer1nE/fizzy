@@ -65,10 +65,48 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  build_placeholder_email = "build@localhost"
+
+  email_address = ENV["FIZZY_EMAIL_ADDRESS"].presence
+  email_address ||= build_placeholder_email if ENV["SECRET_KEY_BASE_DUMMY"].present?
+  raise "Missing FIZZY_EMAIL_ADDRESS" if email_address.blank?
+
+  email_domain = ENV["FIZZY_EMAIL_DOMAIN"].presence || email_address.split("@", 2).last
+  email_domain ||= "example.com" if ENV["SECRET_KEY_BASE_DUMMY"].present?
+  raise "Missing FIZZY_EMAIL_DOMAIN and unable to infer domain from FIZZY_EMAIL_ADDRESS" if email_domain.blank?
+
+  smtp_address = ENV["FIZZY_SMTP_ADDRESS"].presence || "smtp.#{email_domain}"
+  smtp_port    = (ENV["FIZZY_SMTP_PORT"].presence || 587).to_i
+  smtp_auth    = (ENV["FIZZY_SMTP_AUTHENTICATION"].presence || "plain").to_sym
+  starttls     = ENV.fetch("FIZZY_SMTP_ENABLE_STARTTLS_AUTO", "true").to_s.downcase != "false"
+  email_password = ENV["FIZZY_EMAIL_PASSWORD"].presence
+  email_password ||= "build-placeholder" if ENV["SECRET_KEY_BASE_DUMMY"].present?
+  raise "Missing FIZZY_EMAIL_PASSWORD" if email_password.blank?
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: smtp_address,
+    port: smtp_port,
+    domain: email_domain,
+    user_name: email_address,
+    password: email_password,
+    authentication: smtp_auth,
+    enable_starttls_auto: starttls,
+    openssl_verify_mode: ENV["FIZZY_SMTP_OPENSSL_VERIFY_MODE"].presence
+  }.compact
+
+  app_host = ENV["APP_HOST"].presence || email_domain
+  app_host ||= "example.com" if ENV["SECRET_KEY_BASE_DUMMY"].present?
+  asset_host = app_host.match?(%r{^https?://}) ? app_host : "https://#{app_host}"
+
+  config.action_controller.default_url_options = { host: app_host, protocol: "https" }
+  config.action_mailer.default_url_options     = { host: app_host, protocol: "https" }
+  config.action_mailer.asset_host              = asset_host
+  config.action_mailer.perform_deliveries      = true
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
